@@ -9,7 +9,7 @@ document.body.onkeydown = function(e){
 }
 
 // Actual Gameloop
-const loop = setInterval(update, 10);
+const loop = setInterval(update, 15);
 function update(){
   if(play){
     c.clearRect(0, 0, canvas.width, canvas.height);

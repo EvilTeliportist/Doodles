@@ -91,41 +91,64 @@ class GravityBall {
 }
 
 class BlackHole {
-    constructor(mass, x, y){
+    constructor(mass, x, y, image){
         this.x = x;
         this.y = y;
-        this.r = 10;
+        this.r = 15;
         this.mass = mass;
-        circle(this.x, this.y, this.r);
+        this.image = image;
     }
 
     draw(){
-        circle(this.x, this.y, this.r * 5);
+        //c.drawImage(this.image, this.x - this.r, this.y - this.r, 2 * this.r, 2 * this.r)
+        circle(this.x, this.y, this.r)
     }
 
     info(){
-        return [this.x, this.y, this.mass]
+        return {'x': this.x, 'y': this.y, 'm': this.mass}
+    }
+
+    repos(x, y){
+        this.x = x;
+        this.y = y;
     }
 }
 
 class OrbitBall {
     constructor(mass, x, y){
-        this.mass = mass;
+        this.m = mass;
         this.x = x;
         this.y = y;
-        this.r = mass*10;
+        this.r = 10;
         this.color = hex();
 
-        this.vx = 0;
+        this.vx = 5;
         this.vy = 0;
 
-        //TODO
+        this.g = .0001;
     }
 
     move(black_holes){
-        info = black_holes[0].info();
 
-        //TODO
+        this.x += this.vx;
+        this.y += this.vy;
+
+
+        for (var h = 0; h < black_holes.length; h++){
+            var info = black_holes[h].info();
+
+            var dx = (this.x - info['x']) / 100;
+            var dy = (this.y - info['y']) / 100;
+            var dr = dx**2 + dy**2;
+            var dr = Math.max(dr, .5);
+
+            var a = -1 * (this.g * info['m']) / dr;
+
+            this.vx += (dx / dr) * a;
+            this.vy += (dy / dr) * a;
+        }
+
+        this.draw();
     }
 
     draw(){
