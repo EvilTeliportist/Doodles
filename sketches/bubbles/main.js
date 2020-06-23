@@ -1,6 +1,15 @@
 
-// Program Inits
-var canvas = document.querySelector('canvas')
-canvas.width = document.documentElement.clientWidth;
-canvas.height = document.documentElement.clientHeight;
-var c = canvas.getContext("2d");
+function setup(){
+  balls = []
+
+  for (i = 0; i < 50; i++){
+    balls.push(new Ball(hex()));
+  }
+}
+
+function draw(){
+  console.log(": Frame")
+  for (i = 0; i < balls.length; i++){
+    balls[i].move();
+  }
+}
