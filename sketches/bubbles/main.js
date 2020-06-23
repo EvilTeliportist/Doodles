@@ -1,15 +1,25 @@
 
-function setup(){
-  balls = []
+black_holes = []
+orbits = []
 
-  for (i = 0; i < 50; i++){
-    balls.push(new Ball(hex()));
-  }
-}
+a = true;
+document.addEventListener('mouseup', (e) => {
+    if (a){
+        black_holes.push(new BlackHole(10, e.clientX, e.clientY));
+        a = false;
+    } else {
+        orbits.push(new OrbitBall(1, e.clientX, e.clientY));
+    }
+})
+
+
 
 function draw(){
-  console.log(": Frame")
-  for (i = 0; i < balls.length; i++){
-    balls[i].move();
-  }
+    for (i = 0; i < black_holes.length; i++){
+        black_holes[i].draw();
+    }
+
+    for (i = 0; i < orbits.length; i++){
+        orbits[i].draw();
+    }
 }
