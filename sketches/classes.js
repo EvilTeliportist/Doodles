@@ -169,6 +169,9 @@ class Pendulum {
         this.a1_v = 0;
         this.a2_v = 0;
         this.g = 1;
+
+        this.path = [];
+        this.path2 = [];
     }
 
     draw() {
@@ -194,14 +197,33 @@ class Pendulum {
 
 
         line(this.x, this.y, x1, y1);
-        circle(x1, y1, this.m1);
-
         line(x1, y1, x2, y2);
-        circle(x2, y2, this.m2);
+
+        circle(x1, y1, this.m1, '#11ff00');
+        circle(x2, y2, this.m2, '#03c2fc');
 
         this.a1_v += this.a1_a;
         this.a2_v += this.a2_a;
         this.a1 += this.a1_v;
         this.a2 += this.a2_v;
+
+        this.path.push([x1, y1]);
+        this.path2.push([x2, y2]);
+
+        if (this.path.length > 100){
+            this.path.shift();
+        }
+
+        if (this.path2.length > 100){
+            this.path2.shift();
+        }
+
+        for (var i = 0; i < this.path.length; i++){
+            circle(this.path[i][0], this.path[i][1], 2, '#11ff00');
+        }
+
+        for (var i = 0; i < this.path2.length; i++){
+            circle(this.path2[i][0], this.path2[i][1], 2, '#03c2fc');
+        }
     }
 }

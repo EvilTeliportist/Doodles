@@ -14,7 +14,7 @@ function hex(){
 
 // Drawing Functions
 function circle(x, y, radius, color, border_color){
-  c.strokeStyle = border_color || "#000000";
+  c.strokeStyle = border_color || color || "#000000";
   c.fillStyle = color || "#000000";
   c.beginPath();
   c.arc(x, y, radius, 0, 2 * Math.PI);
