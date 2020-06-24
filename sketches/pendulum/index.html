@@ -7,8 +7,24 @@
   </head>
   <body>
     <canvas height='100' width='100'></canvas>
-    <img id='blackhole' src='https://icons.iconarchive.com/icons/zairaam/bumpy-planets/256/blackhole-icon.png' style='display:none;'/>
+    <div id='controls'>
+        <p1>Controls</p1><br><br>
+        <label>Length #1</label>
+        <input id='l1' type='number' value="200"></input>
+        <label>Length #2</label>
+        <input id='l2' type='number' value="200"></input>
+        <label>Mass #1</label>
+        <input id='m1' type='number' value="10"></input>
+        <label>Mass #2</label>
+        <input id='m2' type='number' value="10"></input>
+        <label>Angle #1</label>
+        <input id='a1' type='number' value="30"></input>
+        <label>Angle #2</label>
+        <input id='a2' type='number' value="30"></input>
+        <input id='submit' type='submit'></input>
+    </div>
 </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src='../helpers.js'></script>
   <script src='../classes.js'></script>
   <script src='main.js'></script>

@@ -23,3 +23,14 @@ function circle(x, y, radius, color, border_color){
   c.fillStyle = "#000000"
   c.strokeStyle = "#000000"
 }
+
+function line(x, y, x1, y1, width, color){
+    c.strokeStyle = color || "#000000";
+    c.lineWidth = width || 1;
+    c.beginPath();
+    c.moveTo(x, y);
+    c.lineTo(x1, y1);
+    c.stroke();
+    c.lineWidth = 1;
+    c.strokeStyle = "#000000";
+}

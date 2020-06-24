@@ -1,24 +1,18 @@
 
-var image = document.getElementById('blackhole');
-
-black_holes = []
-orbits = []
-
-document.addEventListener('mouseup', (e) => {
-    if (e.shiftKey){
-        black_holes.push(new BlackHole(10000, e.clientX, e.clientY, image));
-    } else {
-        orbits.push(new OrbitBall(.1, e.clientX, e.clientY));
-        console.log(orbits.length)
-    }
-})
+var p = new Pendulum(200, 200, 10, 10, 30, 30)
 
 function draw(){
-    for (i = 0; i < black_holes.length; i++){
-        black_holes[i].draw();
-    }
-
-    for (i = 0; i < orbits.length; i++){
-        orbits[i].move(black_holes);
-    }
+    p.draw()
 }
+
+$("#submit").click(function() {
+    let l1 = parseInt($("#l1").val());
+    let l2 = parseInt($("#l2").val());
+    let m1 = parseInt($("#m1").val());
+    let m2 = parseInt($("#m2").val());
+    let a1 = parseInt($("#a1").val());
+    let a2 = parseInt($("#a2").val());
+
+
+    p = new Pendulum(l1, l2, m1, m2, a1, a2)
+})

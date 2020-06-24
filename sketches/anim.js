@@ -8,11 +8,14 @@ document.body.onkeydown = function(e){
     }
 }
 
+var time = 0;
+
 // Actual Gameloop
-const loop = setInterval(update, 15);
+const loop = setInterval(update, 1000 / 60);
 function update(){
   if(play){
     c.clearRect(0, 0, canvas.width, canvas.height);
     draw();
+    time += 1;
   }
 }

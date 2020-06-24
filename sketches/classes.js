@@ -155,3 +155,53 @@ class OrbitBall {
         circle(this.x, this.y, this.r, this.color, this.color);
     }
 }
+
+class Pendulum {
+    constructor(r1, r2, m1, m2, a1, a2){
+        this.x = w/2;
+        this.y = 100;
+        this.r1 = r1;
+        this.r2 = r2;
+        this.m1 = m1;
+        this.m2 = m2;
+        this.a1 = a1;
+        this.a2 = a2;
+        this.a1_v = 0;
+        this.a2_v = 0;
+        this.g = 1;
+    }
+
+    draw() {
+        let num1 = -this.g * (2 * this.m1 + this.m2) * Math.sin(this.a1);
+        let num2 = -this.m2 * this.g * Math.sin(this.a1 - 2 * this.a2);
+        let num3 = -2 * Math.sin(this.a1 - this.a2) * this.m2;
+        let num4 = this.a2_v * this.a2_v * this.r2 + this.a1_v * this.a1_v * this.r1 * Math.cos(this.a1 - this.a2);
+        let den = this.r1 * (2 * this.m1 + this.m2 - this.m2 * Math.cos(2 * this.a1 - 2 * this.a2));
+        this.a1_a = (num1 + num2 + num3 * num4) / den;
+
+        num1 = 2 * Math.sin(this.a1 - this.a2);
+        num2 = this.a1_v * this.a1_v * this.r1 * (this.m1 + this.m2);
+        num3 = this.g * (this.m1 + this.m2) * Math.cos(this.a1);
+        num4 = this.a2_v * this.a2_v * this.r2 * this.m2 * Math.cos(this.a1 - this.a2);
+        den = this.r2 * (2 * this.m1 + this.m2 - this.m2 * Math.cos(2 * this.a1 - 2 * this.a2));
+        this.a2_a = (num1 * (num2 + num3 + num4)) / den;
+
+        let x1 = this.r1 * Math.sin(this.a1) + this.x;
+        let y1 = this.r1 * Math.cos(this.a1) + this.y;
+
+        let x2 = x1 + this.r2 * Math.sin(this.a2);
+        let y2 = y1 + this.r2 * Math.cos(this.a2);
+
+
+        line(this.x, this.y, x1, y1);
+        circle(x1, y1, this.m1);
+
+        line(x1, y1, x2, y2);
+        circle(x2, y2, this.m2);
+
+        this.a1_v += this.a1_a;
+        this.a2_v += this.a2_a;
+        this.a1 += this.a1_v;
+        this.a2 += this.a2_v;
+    }
+}
