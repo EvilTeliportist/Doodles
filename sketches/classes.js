@@ -94,7 +94,7 @@ class BlackHole {
     constructor(mass, x, y, image){
         this.x = x;
         this.y = y;
-        this.r = 15;
+        this.r = 15 * (mass / 10000);
         this.mass = mass;
         this.image = image;
     }
@@ -115,15 +115,15 @@ class BlackHole {
 }
 
 class OrbitBall {
-    constructor(mass, x, y){
+    constructor(mass, x, y, vx, vy){
         this.m = mass;
         this.x = x;
         this.y = y;
         this.r = 10;
         this.color = hex();
 
-        this.vx = 5;
-        this.vy = 0;
+        this.vx = vx;
+        this.vy = vy;
 
         this.g = .0001;
     }

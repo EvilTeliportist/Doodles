@@ -6,10 +6,11 @@ orbits = []
 
 document.addEventListener('mouseup', (e) => {
     if (e.shiftKey){
-        black_holes.push(new BlackHole(10000, e.clientX, e.clientY, image));
+        black_holes.push(new BlackHole(parseInt($("#mass").val()), e.clientX, e.clientY, image));
     } else {
-        orbits.push(new OrbitBall(.1, e.clientX, e.clientY));
-        console.log(orbits.length)
+        if(e.clientX > 200 || e.clientY > 280){
+            orbits.push(new OrbitBall(.1, e.clientX, e.clientY, parseInt($("#x").val()), parseInt($("#y").val())));
+        }
     }
 })
 
