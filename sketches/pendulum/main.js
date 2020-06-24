@@ -1,8 +1,8 @@
 
 var p = new Pendulum(200, 200, 10, 10, 30, 30)
 
-function draw(){
-    p.draw()
+function draw(backwards){
+    p.draw(backwards || false)
 }
 
 $("#submit").click(function() {

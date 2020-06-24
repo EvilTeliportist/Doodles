@@ -14,12 +14,12 @@ document.addEventListener('mouseup', (e) => {
     }
 })
 
-function draw(){
+function draw(backwards){
     for (i = 0; i < black_holes.length; i++){
         black_holes[i].draw();
     }
 
     for (i = 0; i < orbits.length; i++){
-        orbits[i].move(black_holes);
+        orbits[i].move(black_holes, backwards || false);
     }
 }

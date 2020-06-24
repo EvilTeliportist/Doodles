@@ -7,7 +7,9 @@ canvas.height = h;
 var c = canvas.getContext("2d");
 
 // Util Vars
-deg = Math.PI / 180;
+var deg = Math.PI / 180;
+var pixels = c.createImageData(w, h);
+var time = 0; // Updated in anim.js
 
 
 // Util functions
@@ -36,4 +38,12 @@ function line(x, y, x1, y1, width, color){
     c.stroke();
     c.lineWidth = 1;
     c.strokeStyle = "#000000";
+}
+
+function pixel(x, y, color){
+    var index = ((y * w) + x) * 4;
+    pixels.data[index] = color[0]; // R value
+    pixels.data[index + 1] = color[1]; // G value
+    pixels.data[index + 2] = color[2]; // B Value
+    pixels.data[index + 3] = color[3] || 255; // A value
 }

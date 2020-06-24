@@ -128,24 +128,44 @@ class OrbitBall {
         this.g = .0001;
     }
 
-    move(black_holes){
+    move(black_holes, backwards){
 
-        this.x += this.vx;
-        this.y += this.vy;
+        if (!backwards){
+            this.x += this.vx;
+            this.y += this.vy;
 
 
-        for (var h = 0; h < black_holes.length; h++){
-            var info = black_holes[h].info();
+            for (var h = 0; h < black_holes.length; h++){
+                var info = black_holes[h].info();
 
-            var dx = (this.x - info['x']) / 100;
-            var dy = (this.y - info['y']) / 100;
-            var dr = dx**2 + dy**2;
-            var dr = Math.max(dr, .5);
+                var dx = (this.x - info['x']) / 100;
+                var dy = (this.y - info['y']) / 100;
+                var dr = dx**2 + dy**2;
+                var dr = Math.max(dr, .5);
 
-            var a = -1 * (this.g * info['m']) / dr;
+                var a = -1 * (this.g * info['m']) / dr;
 
-            this.vx += (dx / dr) * a;
-            this.vy += (dy / dr) * a;
+                this.vx += (dx / dr) * a;
+                this.vy += (dy / dr) * a;
+            }
+        } else {
+            this.x -= this.vx;
+            this.y -= this.vy;
+
+
+            for (var h = 0; h < black_holes.length; h++){
+                var info = black_holes[h].info();
+
+                var dx = (this.x - info['x']) / 100;
+                var dy = (this.y - info['y']) / 100;
+                var dr = dx**2 + dy**2;
+                var dr = Math.max(dr, .5);
+
+                var a = -1 * (this.g * info['m']) / dr;
+
+                this.vx -= (dx / dr) * a;
+                this.vy -= (dy / dr) * a;
+            }
         }
 
         this.draw();
@@ -174,7 +194,7 @@ class Pendulum {
         this.path2 = [];
     }
 
-    draw() {
+    draw(backwards) {
         let num1 = -this.g * (2 * this.m1 + this.m2) * Math.sin(this.a1);
         let num2 = -this.m2 * this.g * Math.sin(this.a1 - 2 * this.a2);
         let num3 = -2 * Math.sin(this.a1 - this.a2) * this.m2;
@@ -202,10 +222,18 @@ class Pendulum {
         circle(x1, y1, this.m1, '#11ff00');
         circle(x2, y2, this.m2, '#03c2fc');
 
-        this.a1_v += this.a1_a;
-        this.a2_v += this.a2_a;
-        this.a1 += this.a1_v;
-        this.a2 += this.a2_v;
+        if (backwards){
+            this.a1_v -= this.a1_a;
+            this.a2_v -= this.a2_a;
+            this.a1 -= this.a1_v;
+            this.a2 -= this.a2_v;
+        } else {
+            this.a1_v += this.a1_a;
+            this.a2_v += this.a2_a;
+            this.a1 += this.a1_v;
+            this.a2 += this.a2_v;
+        }
+
 
         this.path.push([x1, y1]);
         this.path2.push([x2, y2]);
