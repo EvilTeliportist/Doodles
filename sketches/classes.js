@@ -256,6 +256,6 @@ class FractalTree {
     }
 
     draw(){
-        this.branch(self.x, h - 200, self.a, self.d)
+        this.branch(self.x, h - 100, self.a, self.d)
     }
 }
