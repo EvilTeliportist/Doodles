@@ -230,32 +230,33 @@ class Pendulum {
 
 class FractalTree {
     constructor(depth, length, offset){
-        self.x = w/2;
-        self.y = h;
-        self.d = depth;
-        self.a = -90;
-        self.l = length;
-        self.off = offset;
+        this.x = w/2;
+        this.y = h;
+        this.d = depth;
+        this.a = -90;
+        this.l = length;
+        this.off = offset;
     }
 
     branch(x, y, angle, depth){
 
         if (depth > 0){
-            let x2 = x + (Math.cos(angle * deg) * depth * 10.0);
-            let y2 = y + (Math.sin(angle * deg) * depth * 10.0);
+            let x2 = x + (Math.cos(angle * deg) * depth * this.l);
+            let y2 = y + (Math.sin(angle * deg) * depth * this.l);
             line(x, y, x2, y2);
-            this.branch(x2, y2, angle - off, depth - 1);
-            this.branch(x2, y2, angle + off, depth - 1);
+            this.branch(x2, y2, angle - this.off, depth - 1);
+            this.branch(x2, y2, angle + this.off, depth - 1);
         }
 
     }
 
-    set(off, depth){
-        self.off = off;
-        self.d = depth;
+    set(off, depth, l){
+        this.off = off;
+        this.d = depth;
+        this.l = l;
     }
 
     draw(){
-        this.branch(self.x, h - 100, self.a, self.d)
+        this.branch(this.x, h - 100, this.a, this.d)
     }
 }

@@ -1,10 +1,11 @@
-var tree = new FractalTree(10, 100, 10)
+var tree = new FractalTree(10, 10, 10)
 
 function draw(){
 
     let off = parseInt($("#off").val());
     let depth = parseInt($("#depth").val());
-    tree.set(off, depth);
+    let l = parseInt($("#length").val());
+    tree.set(off, depth, l);
 
     tree.draw();
 }
