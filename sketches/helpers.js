@@ -6,6 +6,9 @@ canvas.width = w;
 canvas.height = h;
 var c = canvas.getContext("2d");
 
+// Util Vars
+deg = Math.PI / 180;
+
 
 // Util functions
 function hex(){

@@ -227,3 +227,35 @@ class Pendulum {
         }
     }
 }
+
+class FractalTree {
+    constructor(depth, length, offset){
+        self.x = w/2;
+        self.y = h;
+        self.d = depth;
+        self.a = -90;
+        self.l = length;
+        self.off = offset;
+    }
+
+    branch(x, y, angle, depth){
+
+        if (depth > 0){
+            let x2 = x + (Math.cos(angle * deg) * depth * 10.0);
+            let y2 = y + (Math.sin(angle * deg) * depth * 10.0);
+            line(x, y, x2, y2);
+            this.branch(x2, y2, angle - off, depth - 1);
+            this.branch(x2, y2, angle + off, depth - 1);
+        }
+
+    }
+
+    set(off, depth){
+        self.off = off;
+        self.d = depth;
+    }
+
+    draw(){
+        this.branch(self.x, h - 200, self.a, self.d)
+    }
+}
